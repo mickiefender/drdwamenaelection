@@ -486,7 +486,7 @@ group"
               className="border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-lg font-semibold transition transform hover:scale-105"
               onClick={() => setIsLoading(true)}
             >
-              Become a Volunteer
+              Become a  Volunteer
             </Link>
           </div>
         </div>
