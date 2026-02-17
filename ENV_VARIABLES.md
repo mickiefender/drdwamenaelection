@@ -9,11 +9,6 @@ Create a `.env.local` file in the root directory with the following variables:
 # ADMIN AUTHENTICATION
 # ============================================
 
-# Secret key for creating admin users via API
-# Use a strong, random string (32+ characters recommended)
-# This prevents unauthorized admin user creation
-ADMIN_SETUP_KEY=your-secret-setup-key-change-this-in-production
-
 # Secret key for JWT token signing
 # MUST be a strong random string (32+ characters minimum)
 # Generate using: openssl rand -base64 32
@@ -67,20 +62,12 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 **Option 3: Using Online Generator**
 Visit: https://generate-secret.vercel.app/32
 
-### Admin Setup Key
-
-Use any of the methods above, or create a memorable but secure passphrase:
-```
-Campaign2024!Setup@Key#Secure
-```
-
 ## Environment-Specific Configuration
 
 ### Development (.env.local)
 
 ```env
 NODE_ENV=development
-ADMIN_SETUP_KEY=dev-setup-key-2024
 JWT_SECRET=dev-jwt-secret-change-in-production-32chars
 NEXT_PUBLIC_SUPABASE_URL=https://your-dev-project.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your-dev-service-role-key
@@ -90,7 +77,6 @@ SUPABASE_SERVICE_ROLE_KEY=your-dev-service-role-key
 
 ```env
 NODE_ENV=production
-ADMIN_SETUP_KEY=prod-secure-setup-key-2024-change-this
 JWT_SECRET=prod-jwt-secret-must-be-very-secure-32plus-chars
 NEXT_PUBLIC_SUPABASE_URL=https://your-prod-project.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your-prod-service-role-key
@@ -121,7 +107,6 @@ Create a test file `test-env.js`:
 
 ```javascript
 console.log('Environment Variables Check:')
-console.log('ADMIN_SETUP_KEY:', process.env.ADMIN_SETUP_KEY ? '✅ Set' : '❌ Missing')
 console.log('JWT_SECRET:', process.env.JWT_SECRET ? '✅ Set' : '❌ Missing')
 console.log('NEXT_PUBLIC_SUPABASE_URL:', process.env.NEXT_PUBLIC_SUPABASE_URL ? '✅ Set' : '❌ Missing')
 console.log('SUPABASE_SERVICE_ROLE_KEY:', process.env.SUPABASE_SERVICE_ROLE_KEY ? '✅ Set' : '❌ Missing')
@@ -163,10 +148,6 @@ Consult your hosting platform's documentation for setting environment variables.
 2. Check `SUPABASE_SERVICE_ROLE_KEY` is the service role key (not anon key)
 3. Ensure no trailing spaces in the values
 
-### Error: "Invalid setup key"
-
-**Solution**: Verify `ADMIN_SETUP_KEY` in `.env.local` matches the key you're using in API requests
-
 ### Variables not loading
 
 **Solution**:
@@ -181,7 +162,6 @@ Consult your hosting platform's documentation for setting environment variables.
 # Copy this template and fill in your actual values
 
 # Admin Authentication
-ADMIN_SETUP_KEY=Campaign2024!Setup@Key#Secure
 JWT_SECRET=a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6
 
 # Supabase
